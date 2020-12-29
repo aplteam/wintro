@@ -1,0 +1,19 @@
+ Z_←{PROP_}TREE NAME_;⎕IO;⎕ML;WN_;LCASE_;SUBS_;A_;B_;C_;D_;M_;NODE_  ⍝ Display tree
+ ⎕IO←1 ⋄ ⎕ML←0                      ⍝ Origin 1, native Dyalog.
+ ⍎(0=⎕NC'PROP_')/'PROP_←'''''       ⍝ Default : dont disp type.
+ NODE_←(¯1⌊-+/∧\'.'≠⌽NAME_)↑NAME_   ⍝ Remove leading hierarchy.
+ LCASE_←{⎕AV[(⎕AV⍳⍵)-48×⍵∊⎕A]}      ⍝ Lower Casify.
+ :If (⊂LCASE_ PROP_)∊LCASE_¨NAME_ ⎕WG'PropList'    ⍝ Property of this object.
+     NODE_,←':',⍕NAME_ ⎕WG PROP_     ⍝ Append property value.
+ :End                                ⍝ to node name.
+ WN_←⎕WN NAME_                      ⍝ Get child objects.
+ Z_←NODE_ ⋄ →(0=⍴WN_)/0             ⍝ No children, finished.
+ SUBS_←↑↑,/,∘↓∘(PROP_∘TREE)¨WN_     ⍝ Catenate child sub-trees.
+ A_←' '≠SUBS_[;⎕IO]                 ⍝ Locate child name tags.
+ B_←(∨\A_)∧⌽∨\⌽A_                   ⍝ Identify tag range.
+ C_←(<\B_)+2×⌽<\⌽B_                 ⍝ Mark corners.
+ M_←(-⌊0.5×¯1++/B_)⌽<\B_            ⍝ Mid point of vertical.
+ D_←' │├┌└─'[⎕IO+A_+B_+C_]          ⍝ Vertical tree connector.
+ (M_/D_)←('┌└├│─'⍳M_/D_)⊃'┬┴┼┤─'    ⍝ Horiz graphic '∨' vert.
+ Z_←(M_\'─'),D_,(A_\'─'),SUBS_      ⍝ Build tree.
+ Z_←(↑,¨M_\⊂NODE_),Z_               ⍝ Prefix with node tag.

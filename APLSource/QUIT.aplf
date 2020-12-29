@@ -1,0 +1,5 @@
+ R←QUIT MSG
+ ⎕EX¨(⎕WN'.')~'Topics' 'Tutor'
+ R←1
+ ⎕EX{⍵↑⍨¯1+⍵⍳'.'}1⊃MSG
+⍝Done

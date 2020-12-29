@@ -1,0 +1,9 @@
+ {r}←DO_TOPIC;T
+ T←1
+ ∆BOOK←T⊃∆BOOKS
+ ∆TITLE←T⊃,∆TOPICS
+ ∆T←T
+ ⎕EX¨(⎕WN'.')~'Topics' 'Tutor'
+ ⎕NQ Tutor.G'GotFocus'
+ LESSON 1
+ r←0
