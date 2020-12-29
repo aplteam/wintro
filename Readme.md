@@ -1,4 +1,4 @@
-# ReadMeFirst
+# Read Me
 
 This project is about the Dyalog APL workspace WINTRO.DWS which is part of a standard Dyalog APL installation.
 
